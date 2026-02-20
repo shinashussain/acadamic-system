@@ -24,7 +24,8 @@ const TeacherLogin = () => {
                 navigate('/teacher-dashboard');
             }
         } catch (err) {
-            setError(err.response?.data?.message || 'Login failed. Please check your credentials.');
+            console.error('Teacher Login Error:', err);
+            setError(err.response?.data?.message || 'Login failed. Please check your credentials and connection.');
         } finally {
             setLoading(false);
         }

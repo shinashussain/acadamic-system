@@ -25,7 +25,8 @@ const LoginPage = () => {
                 navigate('/');
             }
         } catch (err) {
-            setError(err.response?.data?.message || 'Login failed. Please try again.');
+            console.error('Admin Login Error:', err);
+            setError(err.response?.data?.message || 'Login failed. Please check your connection and try again.');
         } finally {
             setLoading(false);
         }

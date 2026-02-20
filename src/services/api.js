@@ -29,6 +29,14 @@ api.interceptors.response.use(
     },
     (error) => {
         if (error.response && error.response.status === 401) {
+            // Don't redirect if we are on a login page or trying to login
+            const isLoginRequest = error.config.url.includes('/auth/login') ||
+                error.config.url.includes('/teachers/login');
+
+            if (isLoginRequest) {
+                return Promise.reject(error);
+            }
+
             // Clear local storage
             const role = localStorage.getItem('userRole');
             localStorage.removeItem('token');
